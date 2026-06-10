@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaik Salman – SEO & Digital Marketing Professional</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1628;
+    --blue: #1A6BFF;
+    --blue-mid: #2563EB;
+    --blue-light: #3B82F6;
+    --sky: #E8F0FE;
+    --white: #FFFFFF;
+    --gray-50: #F8FAFC;
+    --gray-100: #F1F5F9;
+    --gray-300: #CBD5E1;
+    --gray-500: #64748B;
+    --gray-700: #334155;
+    --glass-bg: rgba(255,255,255,0.72);
+    --glass-border: rgba(26,107,255,0.13);
+    --shadow-card: 0 8px 32px rgba(10,22,40,0.10);
+    --shadow-blue: 0 8px 32px rgba(26,107,255,0.18);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--navy); line-height: 1.6; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.90); backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 68px;
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; color: var(--navy); text-decoration: none; letter-spacing: -0.5px; }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--gray-700); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta { background: var(--blue); color: var(--white); border: none; padding: 0.55rem 1.3rem; border-radius: 6px; font-size: 0.875rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+  .nav-cta:hover { background: var(--blue-mid); transform: translateY(-1px); }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .nav-hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0A1628 0%, #0F2044 55%, #142657 100%);
+    display: flex; align-items: center;
+    padding: 100px 5% 60px; position: relative; overflow: hidden;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(26,107,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(26,107,255,0.07) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .hero-glow { position: absolute; top: 10%; right: 8%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(26,107,255,0.20) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; }
+  .hero-tagline { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(26,107,255,0.18); border: 1px solid rgba(26,107,255,0.35); border-radius: 100px; padding: 0.3rem 1rem; color: #93C5FD; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 1.4rem; }
+  .hero-tagline .dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+  .hero-name { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 5.5vw, 4.5rem); font-weight: 800; color: var(--white); letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 0.5rem; }
+  .hero-name .accent { color: #60A5FA; }
+  .hero-headline { font-size: clamp(0.95rem, 1.6vw, 1.1rem); color: #93C5FD; font-weight: 400; margin-bottom: 1.2rem; letter-spacing: 0.01em; }
+  .hero-pitch { font-size: clamp(0.95rem, 1.4vw, 1.05rem); color: rgba(255,255,255,0.70); font-weight: 300; max-width: 560px; margin-bottom: 1rem; line-height: 1.75; }
+  .hero-pitch strong { color: var(--white); font-weight: 500; }
+  .hero-location { display: inline-flex; align-items: center; gap: 0.4rem; color: rgba(255,255,255,0.5); font-size: 0.82rem; margin-bottom: 2rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--blue); color: var(--white); padding: 0.85rem 2rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(26,107,255,0.4); }
+  .btn-primary:hover { background: var(--blue-mid); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,107,255,0.5); }
+  .btn-outline { background: transparent; color: var(--white); padding: 0.85rem 2rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.30); display: inline-flex; align-items: center; gap: 0.5rem; transition: border-color 0.2s, background 0.2s, transform 0.15s; }
+  .btn-outline:hover { border-color: var(--blue-light); background: rgba(26,107,255,0.12); transform: translateY(-2px); }
+
+  /* Photo */
+  .hero-photo-wrap { position: relative; flex-shrink: 0; }
+  .hero-photo-ring { width: 280px; height: 280px; border-radius: 50%; background: conic-gradient(var(--blue), #60A5FA, #93C5FD, var(--blue)); padding: 4px; box-shadow: 0 0 60px rgba(26,107,255,0.35); animation: slow-spin 12s linear infinite; }
+  @keyframes slow-spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .hero-photo-inner { width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(135deg, #1A3A6B, #0F2044); display: flex; align-items: center; justify-content: center; overflow: hidden; animation: slow-spin 12s linear infinite reverse; }
+  .hero-photo-inner img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .hero-avatar-placeholder { font-family: 'Syne', sans-serif; font-size: 5rem; font-weight: 800; color: rgba(255,255,255,0.85); user-select: none; }
+  .hero-badge { position: absolute; bottom: 10px; right: -16px; background: var(--white); border-radius: 12px; padding: 0.6rem 1rem; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; color: var(--navy); white-space: nowrap; }
+  .hero-badge .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 3px rgba(34,197,94,0.2); animation: pulse 1.8s infinite; }
+
+  /* STATS */
+  #stats { background: var(--white); padding: 3.5rem 5%; border-bottom: 1px solid var(--gray-100); }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .stat-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.8rem 1.5rem; text-align: center; box-shadow: var(--shadow-card); transition: transform 0.2s, box-shadow 0.2s; }
+  .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-blue); }
+  .stat-number { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--blue); line-height: 1; margin-bottom: 0.3rem; }
+  .stat-label { font-size: 0.85rem; color: var(--gray-500); font-weight: 500; }
+
+  /* SECTIONS */
+  section { padding: 5.5rem 5%; }
+  .section-eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; color: var(--blue); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; color: var(--navy); letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 1rem; }
+  .section-sub { color: var(--gray-500); font-size: 1.05rem; max-width: 520px; line-height: 1.7; }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-divider { width: 56px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--blue), var(--blue-light)); margin: 1rem 0 0; }
+
+  /* ABOUT */
+  #about { background: var(--gray-50); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; max-width: 1100px; margin: 0 auto; }
+  .about-text p { color: var(--gray-700); font-size: 1rem; line-height: 1.8; margin-bottom: 1.2rem; }
+  .about-niches { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+  .niche-tag { background: var(--sky); color: var(--blue-mid); font-size: 0.78rem; font-weight: 600; padding: 0.3rem 0.85rem; border-radius: 100px; }
+  .about-highlights { display: flex; flex-direction: column; gap: 1rem; }
+  .about-highlight-card { background: var(--white); border: 1px solid var(--glass-border); border-radius: 12px; padding: 1.2rem 1.4rem; display: flex; align-items: flex-start; gap: 1rem; box-shadow: var(--shadow-card); transition: transform 0.2s; }
+  .about-highlight-card:hover { transform: translateX(4px); }
+  .highlight-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--sky); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+  .highlight-info h4 { font-weight: 600; font-size: 0.9rem; color: var(--navy); margin-bottom: 0.2rem; }
+  .highlight-info p { font-size: 0.82rem; color: var(--gray-500); }
+
+  /* SKILLS */
+  #skills { background: var(--white); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem; max-width: 1100px; margin: 0 auto; }
+  .skill-card { background: var(--white); border: 1px solid var(--gray-100); border-radius: 14px; padding: 1.4rem; display: flex; align-items: center; gap: 1rem; box-shadow: var(--shadow-card); transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+  .skill-card:hover { transform: translateY(-4px); border-color: var(--blue-light); box-shadow: var(--shadow-blue); }
+  .skill-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--sky); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .skill-name { font-weight: 600; font-size: 0.92rem; color: var(--navy); }
+  .skill-bar-wrap { height: 4px; background: var(--gray-100); border-radius: 2px; margin-top: 0.4rem; }
+  .skill-bar { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--blue), var(--blue-light)); transition: width 1.2s ease; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--gray-50); }
+  .exp-timeline { max-width: 800px; position: relative; }
+  .exp-timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--blue), rgba(26,107,255,0.1)); }
+  .exp-item { display: flex; gap: 2rem; margin-bottom: 2.5rem; padding-left: 0.5rem; }
+  .exp-dot { width: 42px; height: 42px; border-radius: 50%; background: var(--blue); border: 3px solid var(--white); box-shadow: 0 0 0 3px rgba(26,107,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--white); position: relative; z-index: 1; flex-shrink: 0; }
+  .exp-card { background: var(--white); border: 1px solid var(--glass-border); border-radius: 14px; padding: 1.5rem 1.8rem; box-shadow: var(--shadow-card); flex: 1; }
+  .exp-card-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem; }
+  .exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--navy); }
+  .exp-company { color: var(--blue); font-weight: 600; font-size: 0.9rem; margin-top: 0.15rem; }
+  .exp-period { background: var(--sky); color: var(--blue-mid); font-size: 0.78rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 100px; white-space: nowrap; }
+  .exp-desc { color: var(--gray-500); font-size: 0.9rem; line-height: 1.7; }
+  .exp-bullets { margin-top: 0.8rem; padding-left: 1.2rem; }
+  .exp-bullets li { color: var(--gray-700); font-size: 0.88rem; line-height: 1.7; margin-bottom: 0.3rem; }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .exp-tag { background: var(--sky); color: var(--blue-mid); font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.7rem; border-radius: 100px; }
+
+  /* EDUCATION */
+  #education { background: var(--white); }
+  .edu-card { background: var(--white); border: 1px solid var(--gray-100); border-radius: 16px; padding: 1.8rem 2rem; box-shadow: var(--shadow-card); max-width: 700px; display: flex; gap: 1.5rem; align-items: flex-start; transition: transform 0.2s, box-shadow 0.2s; }
+  .edu-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-blue); }
+  .edu-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--sky); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+  .edu-degree { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--navy); margin-bottom: 0.2rem; }
+  .edu-uni { color: var(--blue); font-weight: 600; font-size: 0.88rem; margin-bottom: 0.15rem; }
+  .edu-period { color: var(--gray-500); font-size: 0.82rem; }
+
+  /* PORTFOLIO */
+  #portfolio { background: var(--gray-50); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .portfolio-card { border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-card); border: 1px solid var(--gray-100); transition: transform 0.25s, box-shadow 0.25s; background: var(--white); display: flex; flex-direction: column; }
+  .portfolio-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(10,22,40,0.14); }
+  .portfolio-card-thumb { height: 150px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+  .portfolio-card-body { padding: 1.4rem; flex: 1; }
+  .portfolio-card-type { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.4rem; }
+  .portfolio-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.98rem; color: var(--navy); margin-bottom: 0.5rem; }
+  .portfolio-card-desc { font-size: 0.85rem; color: var(--gray-500); line-height: 1.6; }
+
+  /* TOOLS */
+  #tools { background: var(--navy); }
+  #tools .section-title { color: var(--white); }
+  #tools .section-sub { color: rgba(255,255,255,0.55); }
+  #tools .section-eyebrow { color: #60A5FA; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.25rem; max-width: 1100px; margin: 0 auto; }
+  .tool-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.10); border-radius: 14px; padding: 1.5rem 1rem; text-align: center; transition: background 0.2s, border-color 0.2s, transform 0.2s; cursor: default; }
+  .tool-card:hover { background: rgba(26,107,255,0.18); border-color: rgba(26,107,255,0.4); transform: translateY(-4px); }
+  .tool-icon { font-size: 2rem; margin-bottom: 0.7rem; }
+  .tool-name { font-weight: 600; font-size: 0.88rem; color: rgba(255,255,255,0.9); }
+
+  /* CONTACT */
+  #contact { background: var(--white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: start; max-width: 1100px; margin: 0 auto; }
+  .contact-info-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+  .contact-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--sky); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+  .contact-info-item a { color: var(--blue); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+  .contact-info-item a:hover { text-decoration: underline; }
+  .contact-info-item p { font-size: 0.82rem; color: var(--gray-500); }
+  .contact-info-item strong { display: block; font-size: 0.88rem; color: var(--navy); font-weight: 600; margin-bottom: 0.15rem; }
+  .contact-form { background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow-card); }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--gray-700); margin-bottom: 0.4rem; }
+  .form-group input, .form-group textarea { width: 100%; padding: 0.8rem 1rem; border: 1.5px solid var(--gray-300); border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--navy); transition: border-color 0.2s, box-shadow 0.2s; outline: none; background: var(--white); }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,107,255,0.12); }
+  .form-group textarea { height: 120px; resize: vertical; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* FOOTER */
+  footer { background: var(--navy); color: rgba(255,255,255,0.50); text-align: center; padding: 2rem 5%; font-size: 0.85rem; }
+  footer span { color: var(--blue-light); }
+  .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
+  .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--blue-light); }
+
+  /* ANIMATIONS */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-photo-wrap { display: none; }
+    .hero-tagline { justify-content: center; }
+    .hero-btns { justify-content: center; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .exp-timeline::before { display: none; }
+    .exp-item { flex-direction: column; gap: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">SS<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:shaiksalman6709@gmail.com">Let's Talk</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tagline">
+        <span class="dot"></span>
+        Rank Better. Reach More. Grow Faster. 🚀
+      </div>
+      <h1 class="hero-name">Shaik<br><span class="accent">Salman</span></h1>
+      <p class="hero-headline">SEO Executive &nbsp;·&nbsp; Local SEO & GBP Specialist &nbsp;·&nbsp; Social Media Marketer</p>
+      <p class="hero-pitch">
+        <strong>Helping Businesses Grow Through SEO, Local Search & Digital Marketing Strategies.</strong><br>
+        Hands-on experience across healthcare, education, retail, and jewellery sectors — turning search intent into real business growth.
+      </p>
+      <div class="hero-location">📍 Cuddapah, Andhra Pradesh, India &nbsp;·&nbsp; Open to Remote</div>
+      <div class="hero-btns">
+        <a href="#portfolio" class="btn-primary">View My Work ↓</a>
+        <a href="#contact" class="btn-outline">Hire Me →</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-ring">
+        <div class="hero-photo-inner">
+          <span class="hero-avatar-placeholder">SS</span>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Open to Work
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-card fade-in">
+      <div class="stat-number">20+</div>
+      <div class="stat-label">SEO Projects Completed</div>
+    </div>
+    <div class="stat-card fade-in">
+      <div class="stat-number">15+</div>
+      <div class="stat-label">Websites Audited</div>
+    </div>
+    <div class="stat-card fade-in">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">Social Media Campaigns</div>
+    </div>
+    <div class="stat-card fade-in">
+      <div class="stat-number">4</div>
+      <div class="stat-label">Industry Niches Covered</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <div class="section-eyebrow">About Me</div>
+      <h2 class="section-title">Digital Marketing<br>Professional</h2>
+      <div class="section-divider"></div>
+      <br>
+      <p>I'm a Digital Marketing professional with hands-on experience in SEO and Social Media Marketing. During my internships at <strong>Maven Web Marketing</strong> and <strong>Krazy Coders</strong>, I worked on real client accounts — managing Google My Business profiles, running site audits, building backlinks, and creating social media content.</p>
+      <p>I've delivered results for businesses in healthcare, education, retail, and jewellery sectors. My approach is data-driven, combining technical SEO precision with compelling creative content.</p>
+      <p>Currently seeking an <strong>SEO Executive or Digital Marketing Executive</strong> role where I can contribute, grow, and deliver measurable results.</p>
+      <br>
+      <p style="font-size:0.85rem;color:var(--gray-500);font-weight:600;margin-bottom:0.6rem;">INDUSTRIES I'VE WORKED IN</p>
+      <div class="about-niches">
+        <span class="niche-tag">🏥 Healthcare</span>
+        <span class="niche-tag">🎓 Education</span>
+        <span class="niche-tag">🛍️ Retail</span>
+        <span class="niche-tag">💍 Jewellery</span>
+        <span class="niche-tag">💻 IT / Tech</span>
+      </div>
+    </div>
+    <div class="about-highlights fade-in">
+      <div class="about-highlight-card">
+        <div class="highlight-icon">🔍</div>
+        <div class="highlight-info">
+          <h4>On-Page & Off-Page SEO</h4>
+          <p>Meta tags, keyword placement, internal linking, social bookmarking, directory submissions & link building</p>
+        </div>
+      </div>
+      <div class="about-highlight-card">
+        <div class="highlight-icon">📍</div>
+        <div class="highlight-info">
+          <h4>Local SEO & Google My Business</h4>
+          <p>GBP setup, profile optimisation, map pack strategies for local businesses across multiple niches</p>
+        </div>
+      </div>
+      <div class="about-highlight-card">
+        <div class="highlight-icon">📱</div>
+        <div class="highlight-info">
+          <h4>Social Media Management</h4>
+          <p>Content creation, scheduling, community management & Google Ads campaign support</p>
+        </div>
+      </div>
+      <div class="about-highlight-card">
+        <div class="highlight-icon">📊</div>
+        <div class="highlight-info">
+          <h4>Analytics & Reporting</h4>
+          <p>Google Analytics & Search Console reporting to track traffic growth and organic performance</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-in" style="max-width:1100px;margin:0 auto 3.5rem;">
+    <div class="section-eyebrow">What I Do</div>
+    <h2 class="section-title">Core Skills</h2>
+    <p class="section-sub">A toolkit built for modern digital growth — combining technical SEO with creative execution.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card fade-in"><div class="skill-icon">🔍</div><div><div class="skill-name">SEO (On-Page & Off-Page)</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div></div>
+    <div class="skill-card fade-in"><div class="skill-icon">📍</div><div><div class="skill-name">Local SEO</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div></div>
+    <div class="skill-card fade-in"><div class="skill-icon">🏢</div><div><div class="skill-name">Google Business Profile</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div></div>
+    <div class="skill-card fade-in"><div class="skill-icon">📊</div><div><div class="skill-name">Google Analytics</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div></div>
+    <div class="skill-card fade-in"><div class="skill-icon">🔎</div><div><div class="skill-name">Google Search Console</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div></div>
+    <div class="skill-card fade-in"><div class="skill-icon">🌐</div><div><div class="skill-name">WordPress</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div></div>
+    <div class="skill-card fade-in"><div class="skill-icon">📱</div><div><div class="skill-name">Social Media Marketing</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div></div>
+    <div class="skill-card fade-in"><div class="skill-icon">✍️</div><div><div class="skill-name">Content Creation</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:83%"></div></div></div></div>
+    <div class="skill-card fade-in"><div class="skill-icon">🎨</div><div><div class="skill-name">Canva Design</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div></div>
+    <div class="skill-card fade-in"><div class="skill-icon">🔗</div><div><div class="skill-name">Link Building</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div></div></div>
+    <div class="skill-card fade-in"><div class="skill-icon">🔧</div><div><div class="skill-name">Technical SEO</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div></div></div>
+    <div class="skill-card fade-in"><div class="skill-icon">🧠</div><div><div class="skill-name">Keyword Research</div><div class="skill-bar-wrap"><div class="skill-bar" style="width:87%"></div></div></div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-header fade-in">
+      <div class="section-eyebrow">Career Path</div>
+      <h2 class="section-title">Work Experience</h2>
+      <p class="section-sub">Real-world agency experience across SEO and social media marketing.</p>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-item fade-in">
+        <div class="exp-dot">💼</div>
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <div>
+              <div class="exp-role">SEO Intern</div>
+              <div class="exp-company">Maven Web Marketing</div>
+            </div>
+            <span class="exp-period">Feb 2026 – Apr 2026 · 3 months</span>
+          </div>
+          <p class="exp-desc">Gained hands-on SEO experience across multiple industries including healthcare (hospitals) and jewellery businesses. Improved website visibility, keyword rankings, and organic traffic through strategic SEO practices.</p>
+          <ul class="exp-bullets">
+            <li>Performed On-Page SEO: meta tags, keyword placement, content structuring, internal linking</li>
+            <li>Executed Off-Page SEO: social bookmarking, profile creation, directory submissions, and link building</li>
+            <li>Applied Technical SEO: website audits, crawl issue fixes, site performance improvements</li>
+            <li>Conducted keyword research for hospital and jewellery niche markets</li>
+            <li>Implemented Local SEO strategies to improve business visibility in target locations</li>
+            <li>Analysed website performance using industry-standard SEO tools</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">On-Page SEO</span><span class="exp-tag">Off-Page SEO</span><span class="exp-tag">Local SEO</span><span class="exp-tag">Technical SEO</span><span class="exp-tag">Keyword Research</span><span class="exp-tag">GSC</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-item fade-in">
+        <div class="exp-dot">📣</div>
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <div>
+              <div class="exp-role">Social Media Intern</div>
+              <div class="exp-company">Krazy Coders IT Solutions</div>
+            </div>
+            <span class="exp-period">Sep 2025 – Dec 2025 · 4 months</span>
+          </div>
+          <p class="exp-desc">Worked as a Digital Marketing Intern gaining hands-on experience in social media management and online advertising. Responsible for creating and managing social media content and assisting with Google Ads campaigns.</p>
+          <ul class="exp-bullets">
+            <li>Created and managed social media content across multiple platforms</li>
+            <li>Designed branded creatives using Canva for posts, stories, and campaigns</li>
+            <li>Assisted with Google Ads campaign setup and management</li>
+            <li>Supported overall digital marketing operations and reporting</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Social Media</span><span class="exp-tag">Content Creation</span><span class="exp-tag">Canva</span><span class="exp-tag">Google Ads</span><span class="exp-tag">Analytics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-header fade-in">
+      <div class="section-eyebrow">Academic Background</div>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-card fade-in">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <div class="edu-degree">Bachelor of Science (BSc) — Computer Science</div>
+        <div class="edu-uni">Yogi Vemana University, Kadapa</div>
+        <div class="edu-period">June 2021 – June 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-header fade-in" style="max-width:1100px;margin:0 auto 3.5rem;">
+    <div class="section-eyebrow">My Work</div>
+    <h2 class="section-title">Portfolio</h2>
+    <p class="section-sub">Projects showcasing real SEO, local search, and social media marketing work.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card fade-in">
+      <div class="portfolio-card-thumb" style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);">🔍</div>
+      <div class="portfolio-card-body">
+        <div class="portfolio-card-type">Technical SEO</div>
+        <div class="portfolio-card-title">Website SEO Audits — Healthcare & Jewellery</div>
+        <p class="portfolio-card-desc">Comprehensive site audits covering crawlability, Core Web Vitals, meta optimisation, and technical fixes for hospital and jewellery client websites.</p>
+      </div>
+    </div>
+    <div class="portfolio-card fade-in">
+      <div class="portfolio-card-thumb" style="background:linear-gradient(135deg,#ECFDF5,#D1FAE5);">📍</div>
+      <div class="portfolio-card-body">
+        <div class="portfolio-card-type">Local SEO</div>
+        <div class="portfolio-card-title">Local SEO Campaigns — Multi-Niche</div>
+        <p class="portfolio-card-desc">Map pack domination strategies for local businesses in healthcare, education, and retail through GBP optimisation and hyperlocal content.</p>
+      </div>
+    </div>
+    <div class="portfolio-card fade-in">
+      <div class="portfolio-card-thumb" style="background:linear-gradient(135deg,#FFF7ED,#FFEDD5);">🔗</div>
+      <div class="portfolio-card-body">
+        <div class="portfolio-card-type">Off-Page SEO</div>
+        <div class="portfolio-card-title">Link Building & Citation Campaigns</div>
+        <p class="portfolio-card-desc">Directory submissions, social bookmarking, profile creation, and strategic backlink acquisition to boost domain authority.</p>
+      </div>
+    </div>
+    <div class="portfolio-card fade-in">
+      <div class="portfolio-card-thumb" style="background:linear-gradient(135deg,#FDF4FF,#FAE8FF);">🎨</div>
+      <div class="portfolio-card-body">
+        <div class="portfolio-card-type">Social Media</div>
+        <div class="portfolio-card-title">Social Media Content & Visual Designs</div>
+        <p class="portfolio-card-desc">Brand-aligned Canva creatives for Instagram, Facebook, and LinkedIn — posts, stories, carousels, and advertising visuals.</p>
+      </div>
+    </div>
+    <div class="portfolio-card fade-in">
+      <div class="portfolio-card-thumb" style="background:linear-gradient(135deg,#EFF6FF,#E0F2FE);">🏢</div>
+      <div class="portfolio-card-body">
+        <div class="portfolio-card-type">GBP</div>
+        <div class="portfolio-card-title">Google Business Profile Optimisation</div>
+        <p class="portfolio-card-desc">Full GBP setup and management — category optimisation, photo strategy, Q&A, review management, and post scheduling for local visibility.</p>
+      </div>
+    </div>
+    <div class="portfolio-card fade-in">
+      <div class="portfolio-card-thumb" style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7);">📊</div>
+      <div class="portfolio-card-body">
+        <div class="portfolio-card-type">Analytics</div>
+        <div class="portfolio-card-title">SEO Performance Reports</div>
+        <p class="portfolio-card-desc">Monthly GSC and GA4 reports tracking organic traffic growth, keyword movements, CTR improvements, and actionable insights.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-header fade-in" style="max-width:1100px;margin:0 auto 3.5rem;">
+    <div class="section-eyebrow">Tech Stack</div>
+    <h2 class="section-title">Tools I Use</h2>
+    <p class="section-sub">Industry-standard platforms I use daily to research, optimise, and report.</p>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-card fade-in"><div class="tool-icon">📈</div><div class="tool-name">Google Analytics</div></div>
+    <div class="tool-card fade-in"><div class="tool-icon">🔎</div><div class="tool-name">Search Console</div></div>
+    <div class="tool-card fade-in"><div class="tool-icon">📍</div><div class="tool-name">Google Business Profile</div></div>
+    <div class="tool-card fade-in"><div class="tool-icon">🎨</div><div class="tool-name">Canva</div></div>
+    <div class="tool-card fade-in"><div class="tool-icon">🌐</div><div class="tool-name">WordPress</div></div>
+    <div class="tool-card fade-in"><div class="tool-icon">📊</div><div class="tool-name">SEMrush</div></div>
+    <div class="tool-card fade-in"><div class="tool-icon">🔗</div><div class="tool-name">Ahrefs</div></div>
+    <div class="tool-card fade-in"><div class="tool-icon">📣</div><div class="tool-name">Google Ads</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="fade-in">
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2 class="section-title">Let's Work<br>Together</h2>
+      <div class="section-divider"></div>
+      <br>
+      <p class="section-sub" style="margin-bottom:2rem;">Ready to improve your search rankings and grow your online presence? I'd love to hear about your project.</p>
+      <div class="contact-info-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <strong>Email</strong>
+          <a href="mailto:shaiksalman6709@gmail.com">shaiksalman6709@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">💼</div>
+        <div>
+          <strong>LinkedIn</strong>
+          <a href="https://www.linkedin.com/in/shaiksalman-627950313" target="_blank">linkedin.com/in/shaiksalman</a>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <strong>Location</strong>
+          <p>Cuddapah, Andhra Pradesh, India · Open to Remote</p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">✅</div>
+        <div>
+          <strong>Status</strong>
+          <p style="color:#16A34A;font-weight:600;">Open to Work — Actively Looking</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form fade-in">
+      <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;color:var(--navy);margin-bottom:1.5rem;">Send a Message</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="John Doe"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="john@company.com"></div>
+      </div>
+      <div class="form-group"><label>Subject</label><input type="text" placeholder="SEO consultation / Project inquiry"></div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell me about your project, goals, and timeline..."></textarea></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;" onclick="window.location.href='mailto:shaiksalman6709@gmail.com'">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="mailto:shaiksalman6709@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/shaiksalman-627950313" target="_blank">LinkedIn</a>
+    <a href="#hero">Back to Top ↑</a>
+  </div>
+  <p>Designed & Built for <span>Shaik Salman</span> · SEO & Digital Marketing Professional · © 2025</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
